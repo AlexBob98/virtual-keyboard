@@ -15,29 +15,31 @@ const Keyboard = {
     },
 
     init() {
-        // Create main elements
         this.elements.textArrea = document.createElement('textarea');
         this.elements.textArrea.classList.add("keyboard-in");
         this.elements.textArrea.setAttribute("autofocus", 'autofocus');
         this.elements.main = document.createElement("div");
         this.elements.keysContainer = document.createElement("div");
 
-        // Setup main elements
+
+        let virtual = document.createElement('p');
+        virtual.classList.add('virtul')
+        virtual.innerHTML = 'Виртуальная клавиатура создана на Windows <br> Смены языка не имеет (( <br> <a class="text-pull" href="https://github.com/AlexBob98/virtual-keyboard/pull/1#issue-1230124844" target="_blank">Ссылка на PullReq</a> ';
+        
+        document.body.append(virtual);
+
+
         this.elements.main.classList.add("keyboard", "keyboard");
         this.elements.keysContainer.classList.add("keyboard__keys");
         this.elements.keysContainer.append(this.createKeys());
 
         this.elements.keys = this.elements.keysContainer.querySelectorAll(".keyboard__key");
 
-        // Add to DOM
-
         this.elements.main.append(this.elements.keysContainer);
         document.body.append(this.elements.textArrea);
         document.body.append(this.elements.main);
        
-     
         document.querySelectorAll(".keyboard-in").forEach((el) => {
-    
 
             el.addEventListener("focus", () => {
                 this.open(el.value, currentValue => {
@@ -56,22 +58,10 @@ const Keyboard = {
             "shift", "я", "ч", "с", "м", "и", "т", "ь", "б", "ю", ".",  "up", "shift-r",
             "ctrl", "win", "alt", "space", "alt-r", "left", "down", "right", "ctrl-r",
         ];
-        const shift = [
-            "Ё", "!", '"', "№", ";", "$", "%",":","?","*","(",")","_","+",
-                ]
-        const keyLayoutEng = [
-            "~", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=", "backspace",
-           "tab", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "[", "]", "\\",
-            "caps", "a", "s", "d", "f", "g", "h", "j", "k", "l", ";", "'", "enter",
-            "shift", "z", "x", "c", "v", "b", "n", "m", ",", ".", "/",  "up", "shift-r",
-            "ctrl", "win", "alt", "space", "alt-r", "ctrl-r", "left", "down", "right"
-        ];
         const createIconHTML = (icon_name) => {
             return `<i class="material-icons">${icon_name}</i>`;
         };
 
-
-       
         keyLayout.forEach(key => {
 
             const keyElement = document.createElement("div");
@@ -130,16 +120,6 @@ const Keyboard = {
                     });
     
                 break;
-
-                case "win":
-                    keyElement.classList.add("win", "key-color");
-                    keyElement.innerHTML = "Win";    
-                    keyElement.addEventListener("click", () => {
-                        
-                    });
-    
-                break;
-
                     
                 case "alt":
                     keyElement.classList.add("alt", "key-color");
@@ -245,7 +225,7 @@ const Keyboard = {
                     keyElement.style.maxWidth = '7em';
                     keyElement.innerHTML = 'Shift';
 
-                    keyElement.addEventListener("mousedown", (e) => {
+                    keyElement.addEventListener("mousedown", () => {
                        this.toggleShift(); 
                        if (keyLayout) {
                         // let eng = [].concat(keyLayoutEng)
@@ -266,6 +246,7 @@ const Keyboard = {
                                     words[10].innerHTML = ")";
                                     words[11].innerHTML = "_";
                                     words[12].innerHTML = "+";
+                                    words[27].innerHTML = '/';
                                     words[53].innerHTML = 'Shift';
                                     words[54].innerHTML = 'Ctrl';
                                     words[55].innerHTML = 'Win';
@@ -292,6 +273,7 @@ const Keyboard = {
                             words[10].innerHTML = "0";
                             words[11].innerHTML = "-";
                             words[12].innerHTML = "=";
+                            words[27].innerHTML = '/';
                             words[53].innerHTML = 'Shift';
                             words[54].innerHTML = 'Ctrl';
                             words[55].innerHTML = 'Win';
@@ -310,7 +292,7 @@ const Keyboard = {
                         keyElement.style.maxWidth = '9em';
                         keyElement.innerHTML = 'Shift';
     
-                        keyElement.addEventListener("mousedown", (e) => {
+                        keyElement.addEventListener("mousedown", () => {
                             this.toggleShift(); 
                             if (keyLayout) {
                              // let eng = [].concat(keyLayoutEng)
@@ -330,6 +312,7 @@ const Keyboard = {
                                 words[10].innerHTML = ")";
                                 words[11].innerHTML = "_";
                                 words[12].innerHTML = "+";
+                                words[27].innerHTML = '/';
                                 words[41].innerHTML = 'Shift';
                                 words[54].innerHTML = 'Ctrl';
                                 words[55].innerHTML = 'Win';
@@ -355,12 +338,14 @@ const Keyboard = {
                                  words[10].innerHTML = "0";
                                  words[11].innerHTML = "-";
                                  words[12].innerHTML = "=";
+                                 words[27].innerHTML = '\\';
                                  words[41].innerHTML = 'Shift';
                                  words[54].innerHTML = 'Ctrl';
                                  words[55].innerHTML = 'Win';
                                  words[56].innerHTML = 'Alt';
                                  words[58].innerHTML = 'Alt';
                                  words[62].innerHTML = 'Ctrl';
+                                 
                       
                              }
                           });
@@ -384,33 +369,7 @@ const Keyboard = {
             if (insertLineBreak) {
                 fragment.append(document.createElement("br"));
             }
-            let words = document.querySelectorAll(".keyboard__key")
-
-            document.addEventListener('keydown',((e) => {
-            {
-                if (e.altKey && e.ctrlKey ) {
-                    
-                    for (let i = 0; i < words.length; i++) {
-                       console.log(words[i])
-                        // words[1].innerHTML = "1"
-                        // words[2].innerHTML = '2'
-                        // words[3].innerHTML = "3"
-                        // words[4].innerHTML = "4"
-                        // words[5].innerHTML = "5"
-                        // words[6].innerHTML = "6"
-                        // words[7].innerHTML = "7"
-                        // words[8].innerHTML = "8"
-                        // words[9].innerHTML = "9"
-                        // words[10].innerHTML = "0"
-                        // words[11].innerHTML = "-"
-                        // words[12].innerHTML = "="
-                     
-             
-                    }
-                      
-                  
-                  }
-              }}))
+           
 
         });
 
@@ -422,6 +381,7 @@ const Keyboard = {
             this.eventHandlers[handlerName](this.properties.value);
         }
     },
+  
     toggleCapsLock() {
         this.properties.capsLock = !this.properties.capsLock;
         for (const key of this.elements.keys) {
@@ -439,17 +399,14 @@ const Keyboard = {
             }
         }
     },
-
-  
-
     open(initialValue, oninput) {
         this.properties.value = initialValue || "";
         this.eventHandlers.oninput = oninput;
     },
-
-
- 
 };
+
+
+
 
 document.onclick = function() {
     document.querySelector(".keyboard-in").focus();
