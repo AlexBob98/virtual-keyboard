@@ -23,7 +23,7 @@ body {
 }
 .keyboard-in {
     width: 65%;
-    height: 220px;
+    height: 170px;
     margin: 0 auto;
     padding: 10px;
     font-family: 'Open Sans', sans-serif;
@@ -58,8 +58,17 @@ button.keyboard__key.tab:active {
     position: relative;
     font-family: 'Open Sans';
 }
-
+.virtul {
+        font-size: 22px;
+        font-family: 'Open Sans';
+        font-weight: 300;
+        color: #aeaeae;
+        text-align: center;
+}
 .keyboard__key:active {
+    background: rgb(0 0 0 / 70%);
+}
+.keyboard__key.active {
     background: rgb(0 0 0 / 70%);
 }
 .key-color {
