@@ -24,7 +24,7 @@ const Keyboard = {
 
         let virtual = document.createElement('p');
         virtual.classList.add('virtul')
-        virtual.innerHTML = 'Виртуальная клавиатура создана на Windows<br> Смены языка не имеет ((';
+        virtual.innerHTML = 'Виртуальная клавиатура создана на Windows <br> Смены языка не имеет (( <br> <a class="text-pull" href="https://github.com/AlexBob98/virtual-keyboard/pull/1#issue-1230124844" target="_blank">Ссылка на PullReq</a> ';
         
         document.body.append(virtual);
 
